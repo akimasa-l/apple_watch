@@ -53,7 +53,7 @@ if (main) {
             img.style.top = `${top - halfSize}px`;
             img.style.width = `${size}px`;
             img.style.height = `${size}px`;
-            img.style.background_size = `${size}px`;
+            img.style.backgroundSize = `${size}px`;
         }
     }
     document.addEventListener('mousemove', logKey);
