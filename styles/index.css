@@ -1,13 +1,19 @@
+body {
+    overflow: hidden;
+}
+
 .main {
     min-height: 100vh;
     min-width: 100vw;
+    /* overflow: hidden; */
 }
+
 .img {
-    --size:60px;
+    --size: 60px;
     width: var(--size);
-    height:var(--size);
-    background-image: url("/images/morokoshi2.png");
+    height: var(--size);
+    background-image: url("/images/morokoshi.png");
     background-size: var(--size);
-    border-radius:50%;
-    position : absolute;
+    border-radius: 50%;
+    position: absolute;
 }

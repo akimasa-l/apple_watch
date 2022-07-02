@@ -47,8 +47,12 @@ if (main) {
         for (const { img, x, y } of imgs) {
             const { left, top } = calcPosition(e.clientX, e.clientY, x, y);
             // console.log({ left, top, clientX: e.clientX, clientY: e.clientY, })
+            const size = calcSize(left, top)
             img.style.left = `${left}px`;
             img.style.top = `${top}px`;
+            img.style.width = `${size}px`;
+            img.style.height = `${size}px`;
+            img.style.background_size = `${size}px`;
         }
     }
     document.addEventListener('mousemove', logKey);
@@ -71,6 +75,19 @@ function calcPosition(left, top, x, y) {
     }
 }
 
+function calcSize(left, top) {
+    const xPos = left + halfImgSize
+    const yPos = top + halfImgSize
+    const distance = Math.sqrt((center.left - xPos) * (center.left - xPos) + (center.top - yPos) * (center.top - yPos))
+    if (distance < 2 * (imgSize + gap)) {
+        return imgSize
+    }
+    if (distance < 3 * (imgSize + gap)) {
+        return imgSize - (distance - 2 * (imgSize + gap)) * (imgSize / (imgSize + gap))
+    }
+    return 0;
+}
+
 /**
  * 
  * @param {Element} main 
@@ -83,9 +100,11 @@ function createImage(main, x, y) {
     img.classList.add("img");/* 
     img.style.left = `${width / 2 - halfImgSize + y * (halfImgSize + (gap / 2)) + x * (imgSize + gap)}px`;
     img.style.top = `${height / 2 - halfImgSize + y * sin60 * (imgSize + gap)}px`; */
-    const { left, top } = calcPosition(center.top, center.left , x, y);
+    const { left, top } = calcPosition(center.left, center.top, x, y);
     img.style.left = `${left}px`;
     img.style.top = `${top}px`;
     main.appendChild(img);
     return img;
 }
+console.log(center)
+console.log(calcPosition(center.top, center.left, 0, 0));
