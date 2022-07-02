@@ -48,8 +48,9 @@ if (main) {
             const { left, top } = calcPosition(e.clientX, e.clientY, x, y);
             // console.log({ left, top, clientX: e.clientX, clientY: e.clientY, })
             const size = calcSize(left, top)
-            img.style.left = `${left}px`;
-            img.style.top = `${top}px`;
+            const halfSize = size / 2;
+            img.style.left = `${left - halfSize}px`;
+            img.style.top = `${top - halfSize}px`;
             img.style.width = `${size}px`;
             img.style.height = `${size}px`;
             img.style.background_size = `${size}px`;
@@ -70,14 +71,14 @@ if (main) {
  */
 function calcPosition(left, top, x, y) {
     return {
-        left: left - halfImgSize + y * (halfImgSize + (gap / 2)) + x * (imgSize + gap),
-        top: top - halfImgSize + y * sin60 * (imgSize + gap)
+        left: left /* - halfImgSize */ + y * (halfImgSize + (gap / 2)) + x * (imgSize + gap),
+        top: top /* - halfImgSize */ + y * sin60 * (imgSize + gap)
     }
 }
 
 function calcSize(left, top) {
-    const xPos = left + halfImgSize
-    const yPos = top + halfImgSize
+    const xPos = left /* + halfImgSize */
+    const yPos = top /* + halfImgSize */
     const distance = Math.sqrt((center.left - xPos) * (center.left - xPos) + (center.top - yPos) * (center.top - yPos))
     if (distance < 2 * (imgSize + gap)) {
         return imgSize
