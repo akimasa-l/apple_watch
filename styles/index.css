@@ -1,11 +1,12 @@
 .main {
     min-height: 100vh;
+    min-width: 100vw;
 }
 .img {
     --size:60px;
     width: var(--size);
     height:var(--size);
-    background-image: url("/images/morokoshi.png");
+    background-image: url("/images/morokoshi2.png");
     background-size: var(--size);
     border-radius:50%;
     position : absolute;
