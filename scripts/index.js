@@ -84,7 +84,11 @@ function calcSize(left, top) {
         return imgSize
     }
     if (distance < 3 * (imgSize + gap)) {
-        return imgSize - (distance - 2 * (imgSize + gap)) * (imgSize / (imgSize + gap))
+        const a = -(distance - 2 * (imgSize + gap)) / (imgSize + gap)
+        if (0 < a < 1) {
+            return Math.pow(Math.cos(a * Math.PI / 2), 2) * imgSize
+        }
+        console.log("やばい")
     }
     return 0;
 }
